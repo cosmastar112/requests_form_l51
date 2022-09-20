@@ -12,8 +12,9 @@ class RequestController extends Controller
     public function index()
     {
         $request = new \App\Request();
+        $personsIds = \App\Person::getList();
 
-        return view('request.index', compact('request'));
+        return view('request.index', compact('request', 'personsIds'));
     }
 
     public function create(CreateRequestRequest $createRequestRequest)

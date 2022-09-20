@@ -14,10 +14,15 @@ class Person extends Model
     /**
      * Список пользователей для select-поля. Первый элемент пустой.
      *
+     * @param self $person
      * @return array
      */
-    public static function getList()
+    public static function getList(self $person = null)
     {
+        if ($person) {
+            return [$person->id => $person->name];
+        }
+
         $personsIds = \App\Person::lists('name', 'id')->toArray();
         //добавить пустой элемент в начало для выбора по умолчанию
         array_unshift($personsIds, NULL);

@@ -17,6 +17,11 @@ class PersonController extends Controller
             abort(404);
         }
 
-        return view('person.show', compact('person'));
+        $request = new \App\Request();
+        $request->per_id = $person->id;
+
+        $personsIds = \App\Person::getList($person);
+
+        return view('person.show', compact('person', 'request', 'personsIds'));
     }
 }

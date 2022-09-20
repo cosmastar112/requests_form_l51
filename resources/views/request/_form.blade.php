@@ -1,12 +1,13 @@
 <?php
 
 /** @var \App\Request $request */
+/** @var array $personsIds */
 
 echo Form::model($request, ['route' => 'request.create']);
 
     echo '<p>';
         echo Form::label('per_id', 'To (person): ');
-        echo Form::select('per_id', \App\Person::getList());
+        echo Form::select('per_id', $personsIds);
     echo '</p>';
 
     echo '<p>';
