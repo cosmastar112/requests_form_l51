@@ -20,3 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
    Route::get('/persons', ['uses' => 'PersonsController@index', 'as' => 'admin_persons']);
    Route::get('/requests', ['uses' => 'RequestsController@index', 'as' => 'admin_requests']);
 });
+
+Route::get('{person}', function($person) {
+    return (App::make('App\Http\Controllers\PersonController'))->callAction('show', [$person]);
+})->where(['login' => '[a-zA-Z0-9]+']);
