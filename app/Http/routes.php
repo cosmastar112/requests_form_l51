@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
+   Route::get('/', 'AdminController@index');
+   Route::get('/persons', ['uses' => 'PersonsController@index', 'as' => 'admin_persons']);
+   Route::get('/requests', ['uses' => 'RequestsController@index', 'as' => 'admin_requests']);
+});
