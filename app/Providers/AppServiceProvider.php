@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Illuminate\Support\Facades\Validator::extend('not_equals_zero', 'App\Validators\NotEqualsZeroValidator@validate');
     }
 
     /**

@@ -77,6 +77,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
+    'not_equals_zero' => 'The person is required',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
