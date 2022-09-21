@@ -4,6 +4,12 @@
 
 ?>
 
-<h1>Create request</h1>
+@extends('layouts.app')
 
-@include('request._form')
+@section('title', 'Create request')
+
+@section('content')
+    <h1>Create request</h1>
+
+    @include('request._form')
+@endsection
