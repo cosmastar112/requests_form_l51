@@ -1,6 +1,7 @@
 <?php
 
 /** @var \App\Request $request */
+/** @var array $personsIds */
 
 ?>
 
@@ -11,5 +12,5 @@
 @section('content')
     <h1>Create request</h1>
 
-    @include('request._form', ['isRequestPage' => true])
+    @include('request._form', ['personsIds' => $personsIds, 'isRequestPage' => true])
 @endsection
