@@ -16,5 +16,5 @@
     @include('person._info')
 
     <h2>Create request</h2>
-    @include('request._form', ['request' => $request, 'personsIds' => $personsIds])
+    @include('request._form', ['request' => $request, 'personsIds' => $personsIds, 'isRequestPage' => false])
 @endsection

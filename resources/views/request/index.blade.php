@@ -11,5 +11,5 @@
 @section('content')
     <h1>Create request</h1>
 
-    @include('request._form')
+    @include('request._form', ['isRequestPage' => true])
 @endsection

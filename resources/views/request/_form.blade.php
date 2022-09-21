@@ -2,13 +2,29 @@
 
 /** @var \App\Request $request */
 /** @var array $personsIds */
+/** @var bool $isRequestPage */
 
-echo Form::model($request, ['route' => 'request.create']);
+echo Form::model($request, ['route' => 'request.create', 'id' => 'create-request']);
 
     echo '<p>';
         echo Form::label('per_id', 'To (person): ');
         echo Form::select('per_id', $personsIds);
     echo '</p>';
+
+    if ($isRequestPage) {
+        echo Form::hidden('isRequestPage', true);
+    }
+
+?>
+
+@if($isRequestPage)
+    <div class="person-info">
+        <h2>Person</h2>
+        @include('person._info', ['person' => new \App\Person])
+    </div>
+@endif
+
+<?php
 
     echo '<p>';
         echo Form::label('from', 'From: ');
