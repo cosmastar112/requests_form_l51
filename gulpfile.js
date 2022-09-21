@@ -12,7 +12,8 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    // mix.sass('app.scss');
+    mix.styles(['main.css']);
 
     mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/libs/jquery/jquery.min.js');
     // mix.copy('node_modules/jquery/dist/jquery.min.map.js', 'resources/assets/js/libs/jquery/jquery.min.map.js');

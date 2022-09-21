@@ -6,13 +6,14 @@
 
 echo Form::model($request, ['route' => 'request.create', 'id' => 'create-request']);
 
-    echo '<p>';
-        echo Form::label('per_id', 'To (person): ');
-        echo Form::select('per_id', $personsIds);
-    echo '</p>';
-
     if ($isRequestPage) {
         echo Form::hidden('isRequestPage', true);
+        echo '<p>';
+            echo Form::label('per_id', 'To (person): ');
+            echo Form::select('per_id', $personsIds);
+        echo '</p>';
+    } else {
+        echo Form::select('per_id', $personsIds, null, ['class' => 'create-request__hidden-field']);
     }
 
 ?>
