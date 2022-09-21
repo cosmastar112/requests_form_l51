@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 Route::get('/request', 'RequestController@index');
 Route::post('/request/create', ['uses' => 'RequestController@create', 'as' => 'request.create']);
 
+Route::get('person/info/{personById}', 'PersonController@info');
+
 Route::get('{person}', function($person) {
     return (App::make('App\Http\Controllers\PersonController'))->callAction('show', [$person]);
 })->where(['login' => '[a-zA-Z0-9]+']);

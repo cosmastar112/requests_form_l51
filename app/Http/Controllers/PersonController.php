@@ -24,4 +24,9 @@ class PersonController extends Controller
 
         return view('person.show', compact('person', 'request', 'personsIds'));
     }
+
+    public function info(\App\Person $personById)
+    {
+        return $personById->toArray();
+    }
 }
