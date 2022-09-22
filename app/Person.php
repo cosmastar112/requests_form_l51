@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     /**
+     * @var string[]
+     */
+    protected $fillable = ['name', 'login', 'email'];
+
+    /**
      * @var string
      */
     protected $table = 'persons';

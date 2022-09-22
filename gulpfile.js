@@ -18,7 +18,8 @@ elixir(function(mix) {
     mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/libs/jquery/jquery.min.js');
     // mix.copy('node_modules/jquery/dist/jquery.min.map.js', 'resources/assets/js/libs/jquery/jquery.min.map.js');
     mix.scripts([
-        'app.js'
+        'app.js',
+        'admin.js'
     ], 'public/js/app.js');
 
     mix.version('public/js/app.js');

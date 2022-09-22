@@ -19,7 +19,14 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
    Route::get('/', 'AdminController@index');
-   Route::get('/persons', ['uses' => 'PersonsController@index', 'as' => 'admin_persons']);
+   Route::get('/persons', ['uses' => 'PersonsController@index', 'as' => 'admin.persons']);
+   Route::get('/persons/create', ['uses' => 'PersonsController@create', 'as' => 'admin.persons.create']);
+   Route::post('/persons', ['uses' => 'PersonsController@store', 'as' => 'admin.persons.store']);
+   Route::get('/persons/{personById}', ['uses' => 'PersonsController@show', 'as' => 'admin.persons.show']);
+   Route::get('/persons/{personById}/edit', ['uses' => 'PersonsController@edit', 'as' => 'admin.persons.edit']);
+   Route::post('/persons/{personById}/update', ['uses' => 'PersonsController@update', 'as' => 'admin.persons.update']);
+   Route::get('/persons/{personById}/delete', ['uses' => 'PersonsController@delete', 'as' => 'admin.persons.delete']);
+
    Route::get('/requests', ['uses' => 'RequestsController@index', 'as' => 'admin_requests']);
 });
 

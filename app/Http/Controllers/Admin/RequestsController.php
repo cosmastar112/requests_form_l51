@@ -11,6 +11,6 @@ class RequestsController extends Controller
 {
     public function index()
     {
-        return 'Admin panel: Requests';
+        return view('admin.requests.index');
     }
 }

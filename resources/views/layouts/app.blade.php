@@ -19,6 +19,13 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/request">Create Request</a></li>
+                    <li>
+                        <a href="/admin">Admin</a>
+                        <ul>
+                            <li><a href="/admin/persons">Persons</a></li>
+                            <li><a href="/admin/requests">Requests</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </header>
