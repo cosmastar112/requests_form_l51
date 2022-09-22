@@ -14,6 +14,14 @@
         <script src="{{ elixir('js/app.js') }}"></script>
     </head>
     <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/request">Create Request</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="container">
             @yield('content')
         </div>
