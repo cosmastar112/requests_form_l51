@@ -1,0 +1,7 @@
+FROM node:8.17.0
+
+RUN npm install -g node-gyp-build
+RUN npm install -g node-gyp
+RUN npm install -g gulp@3.8.8
+
+WORKDIR /app

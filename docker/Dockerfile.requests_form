@@ -1,0 +1,30 @@
+FROM php:7.4.30-apache
+
+#использовать конфиг PHP для разработки
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+#Установка утилиты unzip и библиотек, необходимых расширению PHP: установка git
+RUN apt-get update && apt-get install -y \
+    zlib1g-dev \
+    libzip-dev \
+    unzip \
+    git
+RUN docker-php-ext-install zip
+
+#Установка Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN a2enmod rewrite
+
+WORKDIR /app
+
+RUN chown -R :www-data /app
+
+#Создать в корневой директории сервера символическую ссылку на директорию проекта
+RUN ln -s /app/public /var/www/requests-form-l51.loc
+#Создать конфиг виртуального хоста
+COPY docker/apache/requests-form-l51.loc.conf /etc/apache2/sites-available/requests-form-l51.loc.conf
+#Активировать сайт
+RUN a2ensite requests-form-l51.loc
+
+EXPOSE 8080

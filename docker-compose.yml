@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  app:
+    container_name: requests_form
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.requests_form
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    depends_on:
+      - node
+    ports:
+      - 8080:80
+    user: 1000:1000
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.node
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    user: 1000:1000
