@@ -22,6 +22,7 @@
 
     <p>Id: {{ $request->id }}</p>
     <p>PerId: {{ $request->per_id }}</p>
+    <p>Person login: {{ $request->person->login }}</p>
     <p>From: {{ $request->from }}</p>
     <p>Body: {{ $request->body }}</p>
     <p>Created at: {{ $request->created_at }}</p>

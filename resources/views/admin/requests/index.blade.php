@@ -22,6 +22,7 @@
         <th>id</th>
         <th></th>
         <th>per_id</th>
+        <th>person_login</th>
         <th>from</th>
         <th>body</th>
         <th>created_at</th>
@@ -38,6 +39,7 @@
                     <span><a href="{{ route('admin.requests.delete', [$request->id]) }}" class="admin-panel__delete">Delete</a></span>
                 </td>
                 <td>{{ $request->per_id }}</td>
+                <td>{{ $request->person->login }}</td>
                 <td>{{ $request->from }}</td>
                 <td>{{ $request->body }}</td>
                 <td>{{ $request->created_at }}</td>
