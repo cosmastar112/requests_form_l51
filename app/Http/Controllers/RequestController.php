@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateRequestRequest;
+use App\Http\Requests\StoreRequestRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -17,10 +17,10 @@ class RequestController extends Controller
         return view('request.index', compact('request', 'personsIds'));
     }
 
-    public function create(CreateRequestRequest $createRequestRequest)
+    public function create(StoreRequestRequest $storeRequestRequest)
     {
         /** @var \App\Request $request Созданная заявка. */
-        $request = \App\Request::create($createRequestRequest->all());
+        $request = \App\Request::create($storeRequestRequest->all());
 
         session()->flash('request_created', 'Request successfully created!');
 

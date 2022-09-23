@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CreateRequestRequest;
+use App\Http\Requests\StoreRequestRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -37,9 +37,9 @@ class RequestsController extends Controller
         return view('admin.requests.edit', compact('request', 'personsIds'));
     }
 
-    public function update(\App\Request $request, CreateRequestRequest $createRequestRequest)
+    public function update(\App\Request $request, StoreRequestRequest $storeRequestRequest)
     {
-        $request->update($createRequestRequest->all());
+        $request->update($storeRequestRequest->all());
 
         session()->flash('request_updated', 'Request successfully updated!');
 
@@ -48,9 +48,9 @@ class RequestsController extends Controller
         return redirect($redirectTo);
     }
 
-    public function store(\App\Request $request, CreateRequestRequest $createRequestRequest)
+    public function store(\App\Request $request, StoreRequestRequest $storeRequestRequest)
     {
-        $request = \App\Request::create($createRequestRequest->all());
+        $request = \App\Request::create($storeRequestRequest->all());
 
         session()->flash('request_created', 'Request successfully created!');
 
