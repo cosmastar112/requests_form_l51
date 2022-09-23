@@ -15,9 +15,9 @@
         <div class="alert alert-success">{{ session('person_removed') }}</div>
     @endif
 
-    <button class="admin-panel__create-btn" data-href="{{ route('admin.persons.create') }}">Create person</button>
+    <button class="admin-panel__create-btn btn btn-success" data-href="{{ route('admin.persons.create') }}">Create person</button>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered admin-table" >
         <thead>
             <th>id</th>
             <th></th>
