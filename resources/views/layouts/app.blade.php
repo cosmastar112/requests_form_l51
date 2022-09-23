@@ -18,18 +18,25 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/request">Create Request</a></li>
-                    <li>
-                        <a href="/admin">Admin</a>
-                        <ul>
-                            <li><a href="/admin/persons">Persons</a></li>
-                            <li><a href="/admin/requests">Requests</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Request form</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/request">Create Request</a></li>
+                        <li class="dropdown">
+                            <a href="/admin" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                Admin <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/persons">Persons</a></li>
+                                <li><a href="/admin/requests">Requests</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </header>
         <div class="container">
