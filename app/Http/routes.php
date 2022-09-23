@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
    Route::get('/', 'AdminController@index');
+
    Route::get('/persons', ['uses' => 'PersonsController@index', 'as' => 'admin.persons']);
    Route::get('/persons/create', ['uses' => 'PersonsController@create', 'as' => 'admin.persons.create']);
    Route::post('/persons', ['uses' => 'PersonsController@store', 'as' => 'admin.persons.store']);
@@ -27,7 +28,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
    Route::post('/persons/{personById}/update', ['uses' => 'PersonsController@update', 'as' => 'admin.persons.update']);
    Route::get('/persons/{personById}/delete', ['uses' => 'PersonsController@delete', 'as' => 'admin.persons.delete']);
 
-   Route::get('/requests', ['uses' => 'RequestsController@index', 'as' => 'admin_requests']);
+   Route::get('/requests', ['uses' => 'RequestsController@index', 'as' => 'admin.requests']);
+   Route::get('/requests/create', ['uses' => 'RequestsController@create', 'as' => 'admin.requests.create']);
+   Route::post('/requests', ['uses' => 'RequestsController@store', 'as' => 'admin.requests.store']);
+   Route::get('/requests/{requestById}', ['uses' => 'RequestsController@show', 'as' => 'admin.requests.show']);
+   Route::get('/requests/{requestById}/edit', ['uses' => 'RequestsController@edit', 'as' => 'admin.requests.edit']);
+   Route::post('/requests/{requestById}/update', ['uses' => 'RequestsController@update', 'as' => 'admin.requests.update']);
+   Route::get('/requests/{requestById}/delete', ['uses' => 'RequestsController@delete', 'as' => 'admin.requests.delete']);
 });
 
 Route::get('/request', 'RequestController@index');

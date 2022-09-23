@@ -6,5 +6,5 @@
     <h1>Admin Panel</h1>
 
     <a href="{{ route('admin.persons') }}">Persons</a>
-    <a href="{{ route('admin_requests') }}">Requests</a>
+    <a href="{{ route('admin.requests') }}">Requests</a>
 @endsection
