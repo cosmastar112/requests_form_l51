@@ -1,3 +1,6 @@
 .create-request__hidden-field {
     display: none;
 }
+.form-validation-errors {
+    margin-top: 25px;
+}

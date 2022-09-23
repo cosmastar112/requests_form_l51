@@ -4,25 +4,25 @@
 /** @var array $personsIds */
 /** @var array $route */
 
-echo Form::model($request, ['route' => $route]);
-
-    echo '<p>';
-    echo Form::label('per_id', 'To (person): ');
-    echo Form::select('per_id', $personsIds);
-    echo '</p>';
-
-    echo '<p>';
-    echo Form::label('from', 'From: ');
-    echo Form::text('from');
-    echo '</p>';
-
-    echo '<p>';
-    echo Form::label('body', 'Request: ');
-    echo Form::textarea('body');
-    echo '</p>';
-
-    echo Form::submit('Save');
-
 ?>
+
+<?= Form::model($request, ['route' => $route]) ?>
+
+    <div class="form-group">
+        <?= Form::label('per_id', 'To (person): ') ?>
+        <?= Form::select('per_id', $personsIds, null, ['class'=> 'form-control']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= Form::label('from', 'From: ') ?>
+        <?= Form::text('from', null, ['class'=> 'form-control']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= Form::label('body', 'Request: ') ?>
+        <?= Form::textarea('body', null, ['class'=> 'form-control']) ?>
+    </div>
+
+    <?= Form::submit('Save', ['type' => 'default', 'class' => 'btn btn-primary'])?>
 
 @include('partials._errors')
