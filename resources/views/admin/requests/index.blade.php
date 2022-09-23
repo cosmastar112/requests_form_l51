@@ -17,7 +17,7 @@
 
     <button class="admin-panel__create-btn" data-href="{{ route('admin.requests.create') }}">Create request</button>
 
-    <table>
+    <table class="table table-striped table-bordered">
         <thead>
         <th>id</th>
         <th></th>
