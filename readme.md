@@ -1,27 +1,109 @@
-## Laravel PHP Framework
+# Тестовое задание Форма обратной связи (Requests Form Laravel 5.1)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Задание
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Разработать сайт на Laravel. На сайте должны быть следующие страницы:
+* Главная страница (www.example.com/) - представляет собой список пользователей
+* Страница отправки заявки (www.example.com/request) - представляет собой форму со следующими полями:
+    * выбор получателя из списка пользователей* контактные данные отправителя
+    * текст заявки
+* Страница пользователя (www/example.com/([a-zA-Z0-9]+)) - у каждого пользователя есть произвольный текстовый альяс (кроме request), по которому открывается его страница. На ней данные пользователя + форма заявки без выбора получателя
+* Админка (CRUD) для управления пользователями и заявками
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Для решения задачи необходимо использовать стандартные методы Laravel.
 
-## Official Documentation
+При отправке заявки из общей формы после выбора юзера подгружать с помощью Ajax и отображать сведения о нём.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Список пользователей и заявки хранить в БД, в таблицах persons и requests.
 
-## Contributing
+Пользователь:
+* Имя
+* Логин
+* Почта
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Заявка:
+* Получатель
+* Отправитель
+* Текст заявки
 
-## Security Vulnerabilities
+## Инструкция по разворачиванию приложения
+### Docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Для Linux-систем: по умолчанию владельцем файлов, которые создаются при работе контейнера, является пользователь root. Если доступ к файлам будет осуществляться с хоста, то это может быть проблемой, т.к. файлы будут доступны только для чтения. Чтобы сделать файлы доступными для не-root пользователя, необходимо в конфиге вручную установить UID и GID пользователя. Чтобы определить uid и gid, можно воспользоваться соответственно командами id -u и id -g.
 
-### License
+При использовании Windows данная проблема не появляется.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Пример значения:
+~~~
+user: 1000:1000
+~~~
+
+Создать и запустить контейнеры:
+~~~
+docker-compose up --build
+~~~
+
+Установить зависимости composer:
+~~~
+docker-compose exec app composer install --no-scripts
+~~~
+
+Cоздать .env-файл с конфигурацией приложения:
+~~~
+docker-compose exec app php -r "copy('.env.example', '.env');"
+~~~
+
+Сгенерировать Application key:
+~~~
+docker-compose exec app php artisan key:generate
+~~~
+
+Указать в .env конфигурацию БД:
+~~~
+DB_CONNECTION=sqlite
+~~~
+
+Создать файл БД (sqlite):
+~~~
+docker-compose exec app touch /app/database/database.sqlite
+~~~
+
+Выдать права на запись в директорию с БД и логами:
+~~~
+docker-compose exec app chown -R :www-data /app/database
+docker-compose exec app chmod -R 775 /app/database
+docker-compose exec app chown -R :www-data /app/storage
+docker-compose exec app chmod -R 775 /app/storage
+~~~
+
+Применить миграции:
+~~~
+docker-compose exec app php artisan migrate
+~~~
+
+Установить зависимости node:
+~~~
+docker-compose exec node npm install
+~~~
+
+Сгенерировать ассеты:
+~~~
+docker-compose exec node gulp
+~~~
+
+Добавить в hosts связь IP-адреса с именем хоста:
+~~~
+127.0.0.1    requests-form-l51.loc
+~~~
+
+Например, с помощью команды:
+~~~
+echo '127.0.0.1 requests-form-l51.loc' | tee -a /etc/hosts
+~~~
+
+## Тесты
+
+Запуск:
+~~~
+docker-compose exec app /app/vendor/bin/phpunit
+~~~
